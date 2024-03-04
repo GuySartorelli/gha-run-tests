@@ -139,7 +139,9 @@ runs:
         rm __behat.php
         rm __behat_headless.yml
         # start chromedriver as a background process
-        nohup sh -c "chromedriver" > /dev/null 2>&1 &
+        # nohup sh -c "chromedriver" > /dev/null 2>&1 &
+        composer require --dev --no-interaction dmore/behat-chrome-extension
+        google-chrome --no-sandbox --headless --disable-gpu --disable-infobars --disable-dev-shm-usage --disable-browser-side-navigation --disable-features=VizDisplayCompositor --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222
         if [[ "$ENDTOEND_SUITE" != "root" ]]; then
           vendor/bin/behat --colors --strict --config __behat.yml "$ENDTOEND_SUITE"
         else
