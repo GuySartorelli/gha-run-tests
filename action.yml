@@ -141,7 +141,7 @@ runs:
         # start chromedriver as a background process
         # nohup sh -c "chromedriver" > /dev/null 2>&1 &
         composer require --dev --no-interaction dmore/behat-chrome-extension
-        google-chrome --no-sandbox --headless --disable-gpu --disable-infobars --disable-dev-shm-usage --disable-browser-side-navigation --disable-features=VizDisplayCompositor --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222
+        nohup sh -c "google-chrome --no-sandbox --headless --disable-gpu --disable-infobars --disable-dev-shm-usage --disable-browser-side-navigation --disable-features=VizDisplayCompositor --no-startup-window --no-first-run --no-pings --remote-debugging-address=0.0.0.0 --remote-debugging-port=9222" > /dev/null 2>&1 &
         if [[ "$ENDTOEND_SUITE" != "root" ]]; then
           vendor/bin/behat --colors --strict --config __behat.yml "$ENDTOEND_SUITE"
         else
